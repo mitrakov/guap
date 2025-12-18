@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+  namespace: tomsther
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres-label
+  template:
+    metadata:
+      labels:
+        app: postgres-label
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:10
+          imagePullPolicy: "Always"
+          ports:
+            - containerPort: 5432
+          resources:
+            limits:
+              memory: 128Mi
+          env:
+            - name: POSTGRES_USER
+              value: mitrakov
+            - name: POSTGRES_PASSWORD
+              value: "65418886"
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgredb
+      volumes:
+        - name: postgredb
+          persistentVolumeClaim:
+            claimName: postgres-pv-claim

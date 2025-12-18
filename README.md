@@ -1,2 +1,2 @@
-# guap
-Guap project. Server + cross-platform client
+# Guap
+Guap project. Server + Mobile Client
