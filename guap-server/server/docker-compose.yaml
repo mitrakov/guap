@@ -1,0 +1,35 @@
+# important! requires 'docker-compose' v1.29.1+. Otherwise redis network doesn't work
+version: '3.3'
+
+services:
+  guap:
+    image: mitrakov/guap-docker-compose
+    pull_policy: always
+    depends_on:
+      - db
+      - redis
+    ports:
+      - 8080:8080
+
+  db:
+    image: postgres:10
+    hostname: postgres-service
+    ports:
+      - 5432:5432
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: varlam
+      POSTGRES_USER: mitrakov
+      POSTGRES_PASSWORD: 65418886
+
+  # make sure to set 777 on "redis-data" directory
+  redis:
+    image: bitnami/redis
+    hostname: redis-service
+    ports:
+      - 6379:6379
+    volumes:
+      - ./redis-data:/bitnami/redis/data/
+    environment:
+      REDIS_PASSWORD: 65418886
