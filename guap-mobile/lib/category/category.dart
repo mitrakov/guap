@@ -15,7 +15,7 @@ class Category {
 
   Map<String, dynamic> toJson() => _$CategoryToJson(this);
 
-  String get labelUtf8 => label != null ? utf8.decode(label.runes.toList()) : '';
+  String get labelUtf8 => utf8.decode(label.runes.toList());
 
   @override
   bool operator ==(Object other) =>
