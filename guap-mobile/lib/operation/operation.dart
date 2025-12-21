@@ -20,15 +20,15 @@ class Operation {
 
   Map<String, dynamic> toJson() => _$OperationToJson(this);
 
-  String get itemUtf8 => item != null ? utf8.decode(item.runes.toList()) : '';
+  String get itemUtf8 => utf8.decode(item.runes.toList());
 
-  String get categoryUtf8 => category != null ? utf8.decode(category.runes.toList()) : '';
+  String get categoryUtf8 => utf8.decode(category.runes.toList());
 
-  String get timeUtf8 => time != null ? utf8.decode(time.runes.toList()) : '';
+  String get timeUtf8 => utf8.decode(time.runes.toList());
 
   String get personUtf8 => person != null ? utf8.decode(person!.runes.toList()) : '';
 
-  String get currencyUtf8 => currency != null ? utf8.decode(currency.runes.toList()) : '';
+  String get currencyUtf8 => utf8.decode(currency.runes.toList());
 
   String get commentUtf8 => comment != null ? utf8.decode(comment!.runes.toList()) : '';
 }
