@@ -43,7 +43,7 @@ class OperationTile extends StatelessWidget {
   Widget _createTile() {
     return FutureBuilder<Operation>(
       future: GlobalOperationStore.get(id), // it's ok to run future here because it's cached
-      builder: (context1, snapshot) {
+      builder: (context, snapshot) {
         if (snapshot.hasData) {
           final data = snapshot.data!;
           final person = Settings.showPersons() ? "\n${data.personUtf8}" : "";

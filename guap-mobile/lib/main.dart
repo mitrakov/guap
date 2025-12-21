@@ -22,6 +22,14 @@ import 'package:guap_mobile/settings/settings.dart';
 import 'package:guap_mobile/settings/settingswidget.dart';
 import 'package:guap_mobile/query/widgets/aggregate.dart';
 
+/*
+Build for iOS:
+  bump version in pubspec.yaml
+  flutter build ios
+  xCode: Product -> Destination -> Any iOS Device (arm64)
+  xCode: Product -> Archive -> Distribute App -> Release Testing
+  rename and move *.ipa file to _dist
+ */
 void main() {
   final store = new Store<AppState>(AppReducer.reducer, initialState: AppState(), middleware: [thunkMiddleware]);
   runApp(MyApp(store));
@@ -72,14 +80,14 @@ class MyApp extends StatelessWidget {
         },
         onGenerateRoute: (routeSettings) {
           if (routeSettings.name == "/operation")
-            return MaterialPageRoute(builder: (context1) {
+            return MaterialPageRoute(builder: (context) {
               final args = routeSettings.arguments as Tuple2<String, Optional<Operation>>;
               final category = args.item1;
               final operationOpt = args.item2;
               return AddOperationScaffold(category, operationOpt);
             });
           if (routeSettings.name == "/chooseCategory")
-            return MaterialPageRoute(builder: (context1) {
+            return MaterialPageRoute(builder: (context) {
               final args = routeSettings.arguments as Tuple2<Optional<Operation>, String>;
               final operationIdOpt = args.item1;
               final nextRoute = args.item2;
@@ -89,7 +97,7 @@ class MyApp extends StatelessWidget {
               );
             });
           if (routeSettings.name == "/items")
-            return MaterialPageRoute(builder: (context1) {
+            return MaterialPageRoute(builder: (context) {
               final args = routeSettings.arguments as Tuple2<String, Optional<Operation>>;
               final category = args.item1;
               return Scaffold(

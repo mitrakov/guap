@@ -16,10 +16,10 @@ class ItemEditor extends StatelessWidget {
     return StoreConnector<AppState, ItemState>(
       distinct: true,
       converter: (store) => store.state.itemState,
-      builder: (context1, state) {
+      builder: (context, state) {
         return ListView.builder(
           itemCount: state.items.length,
-          itemBuilder: (context2, i) => _createTile(context2, state.items[i]),
+          itemBuilder: (context, i) => _createTile(context, state.items[i]),
         );
       },
     );

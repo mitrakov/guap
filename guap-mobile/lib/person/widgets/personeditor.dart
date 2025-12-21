@@ -13,12 +13,12 @@ class PersonEditor extends StatelessWidget {
     return StoreConnector<AppState, PersonsState>(
       distinct: true,
       converter: (store) => store.state.personsState,
-      builder: (context1, state) {
+      builder: (context, state) {
         if (state.persons.isEmpty)
-          StoreProvider.of<AppState>(context1).dispatch(PersonsThunk.fetchPersons());
+          StoreProvider.of<AppState>(context).dispatch(PersonsThunk.fetchPersons());
         return ListView.builder(
           itemCount: state.persons.length,
-          itemBuilder: (context2, i) => _createTile(context2, state.persons[i]),
+          itemBuilder: (context, i) => _createTile(context, state.persons[i]),
         );
       },
     );

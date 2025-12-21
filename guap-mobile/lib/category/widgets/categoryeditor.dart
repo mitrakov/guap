@@ -14,13 +14,13 @@ class CategoryEditor extends StatelessWidget {
     return StoreConnector<AppState, CategoryState>(
       distinct: true,
       converter: (store) => store.state.categoryState,
-      builder: (context1, state) {
+      builder: (context, state) {
         if (state.categories.isEmpty)
-          StoreProvider.of<AppState>(context1).dispatch(CategoryThunk.fetchCategories());
+          StoreProvider.of<AppState>(context).dispatch(CategoryThunk.fetchCategories());
         final categories = state.asPlainList();
         return ListView.builder(
           itemCount: categories.length,
-          itemBuilder: (context2, i) => _createTile(context2, categories[i]),
+          itemBuilder: (context, i) => _createTile(context, categories[i]),
         );
       },
     );

@@ -10,7 +10,7 @@ class OperationsView extends StatelessWidget {
     return StoreConnector<AppState, OperationsState> (
       distinct: true,
       converter: (store) => store.state.operationsState,
-      builder: (context1, state) {
+      builder: (context, state) {
         print("Rebiulding operations");
         return Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -18,7 +18,7 @@ class OperationsView extends StatelessWidget {
             Expanded(
               child: ListView.builder(
                 itemCount: state.operations.length,
-                itemBuilder: (context2, i) {
+                itemBuilder: (context, i) {
                   final operationId = state.operations[i];
                   return OperationTile(operationId, ValueKey(operationId));
                 }

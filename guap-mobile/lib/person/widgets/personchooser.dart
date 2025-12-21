@@ -16,24 +16,23 @@ class PersonChooser extends StatelessWidget {
     return StoreConnector<AppState, PersonsState>(
       distinct: true,
       converter: (store) => store.state.personsState,
-      builder: (context1, state) {
+      builder: (context, state) {
         if (state.persons.isEmpty)
-          StoreProvider.of<AppState>(context1).dispatch(PersonsThunk.fetchPersons());
+          StoreProvider.of<AppState>(context).dispatch(PersonsThunk.fetchPersons());
+        final decor = InputDecoration(border: OutlineInputBorder(), labelText: "Choose person (optional)");
         return TypeAheadField<String>(
-          textFieldConfiguration: TextFieldConfiguration(
             controller: ctrl,
-            style: DefaultTextStyle.of(context1).style.copyWith(fontStyle: FontStyle.italic),
-            decoration: InputDecoration(border: OutlineInputBorder(), labelText: "Choose person (optional)"),
-          ),
+          builder: (context, ctrl, focusNode) => TextField(controller: ctrl, focusNode: focusNode, decoration: decor),
           suggestionsCallback: (prefix) {
             final list = new List<String>.from(state.persons);
             list.retainWhere((s) => s.toLowerCase().contains(prefix.toLowerCase()));
             return list;
           },
-          itemBuilder: (context2, suggestion) => ListTile(title: Text(suggestion)),
-          onSuggestionSelected: (newValue) {
+          itemBuilder: (context, suggestion) => ListTile(title: Text(suggestion)),
+          onSelected: (newValue) {
             ctrl.text = newValue;
-          }
+          },
+          hideOnEmpty: true,
         );
       }
     );

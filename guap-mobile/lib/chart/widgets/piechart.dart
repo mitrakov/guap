@@ -53,7 +53,7 @@ class PieChartState extends State<PieChart> {
         onPressed: () {
           // no need to dispatch actions here, because it's used only here
           Ajax.pieChart(PieChartRequest(formatter.parse(monthDropdown.value ?? "").month, yearDropdown.value ?? 0)).then((uri) {
-            Navigator.push(context, MaterialPageRoute(builder: (context1) => FullScreenImage(uri)));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => FullScreenImage(uri)));
           });
         }
       )
