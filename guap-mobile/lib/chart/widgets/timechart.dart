@@ -37,7 +37,7 @@ class TimeChartState extends State<TimeChart> {
     return StoreConnector<AppState, CategoryState>(
       distinct: true,
       converter: (store) => store.state.categoryState,
-      builder: (context1, state) => Column(children: <Widget>[
+      builder: (context, state) => Column(children: <Widget>[
         yearDropdown,
         ElevatedButton(
           child: Text("Come on", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 18)),
@@ -46,7 +46,7 @@ class TimeChartState extends State<TimeChart> {
             final date = formatter.format(DateTime(yearDropdown.value ?? 0));
             final categories = state.asPlainList().map((c) => c.category.labelUtf8).toList();
             Ajax.timeChart(TimeChartRequest("month", date, categories)).then((uri) {
-              Navigator.push(context, MaterialPageRoute(builder: (context1) => FullScreenImage(uri)));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => FullScreenImage(uri)));
             });
           }
         )

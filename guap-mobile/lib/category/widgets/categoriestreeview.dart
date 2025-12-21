@@ -10,18 +10,18 @@ class CategoriesLeftView extends StatelessWidget {
     return StoreConnector<AppState, CategoryState> (
       distinct: true,
       converter: (store) => store.state.categoryState,
-      builder: (context1, state) {
+      builder: (context, state) {
         print("Rebiulding categories");
         if (state.categories.isEmpty)
-          StoreProvider.of<AppState>(context1).dispatch(CategoryThunk.fetchCategories());
+          StoreProvider.of<AppState>(context).dispatch(CategoryThunk.fetchCategories());
         return Expanded(
           child: ListView.builder(
             itemCount: state.categories.length,
-            itemBuilder: (context2, i) {
+            itemBuilder: (context, i) {
               final item = state.categories[i].labelUtf8;
               return ListTile(title: Text(item), onTap: () {
-                StoreProvider.of<AppState>(context2).dispatch(OperationsThunk.fetchOperations(item));
-                Navigator.pop(context2);
+                StoreProvider.of<AppState>(context).dispatch(OperationsThunk.fetchOperations(item));
+                Navigator.pop(context);
               });
             }
           )

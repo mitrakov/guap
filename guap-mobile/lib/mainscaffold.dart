@@ -14,18 +14,18 @@ class MainScaffold extends StatelessWidget {
     return StoreConnector<AppState, String> (
       distinct: true,
       converter: (store) => store.state.lastError,
-      builder: (context1, error) {
-        if (error.contains("(http code 401)")) relogin(context1);
+      builder: (context, error) {
+        if (error.contains("(http code 401)")) relogin(context);
         return Scaffold (
           appBar: AppBar(
             title: Text("Guap application"),
-            actions: <Widget>[_popupMenuCharts(context1), _popupMenuSettings(context1)],
+            actions: <Widget>[_popupMenuCharts(context), _popupMenuSettings(context)],
           ),
           drawer: CategoriesDrawer(),
           floatingActionButton: FloatingActionButton(
             child: Icon(Icons.add),
             tooltip: "Add operation",
-            onPressed: () => Navigator.pushNamed(context1, "/chooseCategory", arguments: Tuple2(Optional<Operation>.empty(), "/operation")),
+            onPressed: () => Navigator.pushNamed(context, "/chooseCategory", arguments: Tuple2(Optional<Operation>.empty(), "/operation")),
           ),
           body: Column(children: <Widget>[
             Visibility(visible: error.isNotEmpty, child: Text(error)),
@@ -47,7 +47,7 @@ class MainScaffold extends StatelessWidget {
     return PopupMenuButton<String>(
       icon: Icon(Icons.settings),
       onSelected: (route) => Navigator.pushNamed(context, route, arguments: Tuple2(Optional<Operation>.empty(), "/items")),
-      itemBuilder: (context1) => [
+      itemBuilder: (context) => [
         PopupMenuItem<String>(
           value: "/persons",
           child: Text("Persons"),
@@ -72,7 +72,7 @@ class MainScaffold extends StatelessWidget {
     return PopupMenuButton<String>(
       icon: Icon(Icons.insert_chart),
       onSelected: (route) => Navigator.pushNamed(context, route),
-      itemBuilder: (context1) => [
+      itemBuilder: (context) => [
         PopupMenuItem<String>(
           value: "/chart/pie",
           child: Text("Pie chart"),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:flutter_treeview/flutter_treeview.dart';
+import 'package:flutter_treeview2/flutter_treeview2.dart';
 import 'package:guap_mobile/category/category.dart';
 import 'package:guap_mobile/category/redux.dart';
 import 'package:guap_mobile/item/redux.dart';
@@ -20,8 +20,8 @@ class CategoriesChooser extends StatelessWidget {
     return StoreConnector<AppState, CategoryState>(
       distinct: true,
       converter: (store) => store.state.categoryState,
-      builder: (context1, state) {
-        final store = StoreProvider.of<AppState>(context1);
+      builder: (context, state) {
+        final store = StoreProvider.of<AppState>(context);
         if (state.categories.isEmpty)
           store.dispatch(CategoryThunk.fetchCategories());
         TreeViewController ctrl = TreeViewController(children: state.categories.map(toNode).toList());

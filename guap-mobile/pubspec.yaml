@@ -1,35 +1,35 @@
-# Built with Flutter 3.19.4, CocoaPods 1.16.2
-# (note that previously it was built with Flutter 1.22.6 that doesn't support NULL-safety: there might be some artifacts).
+# Built with Flutter 3.38.5 (Mac Apple M1), Dart 3.10.4, CocoaPods 1.16.2, Xcode 26.2
 name: guap_mobile
 description: Mobile version of GUAP application
-publish_to: 'none' # to prevent publish with 'flutter pub publish'
-version: 24.5.6+25
+version: 1.5.7+26
 
 environment:
-  sdk: ">=2.19.6 <3.0.0"
+  sdk: ">=3.10.3 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  tuple: 2.0.1                       # tuples support
+  tuple: 2.0.2                       # tuples support
   optional: 6.1.0+1                  # options support
-  intl: 0.18.1                       # formatting messages
-  http: 0.13.6                       # http client
-  crypto: 3.0.3                      # SHA-256
-  shared_preferences: 2.1.1          # key-value storage
+  intl: 0.20.2                       # formatting messages
+  http: 1.6.0                        # http client
+  crypto: 3.0.7                      # SHA-256
+  shared_preferences: 2.5.4          # key-value storage
   flutter_redux: 0.10.0              # redux
   redux_thunk: 0.4.0                 # redux thunk middleware
-  json_annotation: 4.8.1             # json auto-generation
-  flutter_slidable: 3.0.1            # dismissible list tiles (3.0.0 doesn't work)
-  flutter_treeview: 1.0.7+1          # treeview
-  flutter_typeahead: 4.4.0           # auto-complete textbox
-  flutter_rounded_date_picker: 3.0.3 # calendar
-  rflutter_alert: 2.0.6              # pop-ups
+  json_annotation: 4.9.0             # json auto-generation
+  flutter_slidable: 4.0.3            # dismissible list tiles (3.0.0 doesn't work)
+  flutter_treeview2: 1.0.0+2         # fork of flutter_treeview, which is broken now
+  flutter_typeahead: 5.2.0           # auto-complete textbox
+  flutter_rounded_date_picker: 3.0.4 # calendar
+  rflutter_alert: 2.0.7              # pop-ups
 
 dev_dependencies:
-  flutter_lints: 3.0.1
-  build_runner: 2.3.3                # json auto-generation
-  json_serializable: 6.6.2           # json auto-generation
+  build_runner: 2.10.4               # json auto-generation
+  json_serializable: 6.11.3          # json auto-generation
+
+dependency_overrides:
+  win32: 5.5.4                       # TMP: error "UnmodifiableUint8ListView not found in win32-4.1.4" (2025-12), rm once fixed
 
 flutter:
   uses-material-design: true
