@@ -1,4 +1,4 @@
-# Built with Flutter 3.38.5 (Mac Apple M1), Dart 3.10.4, CocoaPods 1.16.2, Xcode 26.2
+# Built with Flutter 3.38.5 (Mac Apple M1), Dart 3.10.4, CocoaPods 1.16.2, Xcode 26.2, Android Studio 2025.2.3
 name: guap_mobile
 description: Mobile version of GUAP application
 version: 1.5.7+26
@@ -27,9 +27,15 @@ dependencies:
 dev_dependencies:
   build_runner: 2.10.4               # json auto-generation
   json_serializable: 6.11.3          # json auto-generation
+  flutter_launcher_icons: 0.14.4     # icons generator, run: "dart run flutter_launcher_icons"
 
 dependency_overrides:
   win32: 5.5.4                       # TMP: error "UnmodifiableUint8ListView not found in win32-4.1.4" (2025-12), rm once fixed
 
 flutter:
   uses-material-design: true
+
+flutter_launcher_icons:              # dart run flutter_launcher_icons
+  android: "ic_launcher"
+  ios: true
+  image_path: "appicon.png"

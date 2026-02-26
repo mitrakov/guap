@@ -29,6 +29,12 @@ Build for iOS:
   xCode: Product -> Destination -> Any iOS Device (arm64)
   xCode: Product -> Archive -> Distribute App -> Release Testing
   rename and move *.ipa file to _dist
+
+Build for Android:
+  bump version in pubspec.yaml
+  flutter build apk
+  AndroidStudio: Build -> Generate Signed App Bundle or APK -> APK -> choose android.jks -> release
+  rename and move *.apk file to _dist
  */
 void main() {
   final store = new Store<AppState>(AppReducer.reducer, initialState: AppState(), middleware: [thunkMiddleware]);
