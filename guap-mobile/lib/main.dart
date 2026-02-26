@@ -33,8 +33,8 @@ Build for iOS:
 Build for Android:
   bump version in pubspec.yaml
   flutter build apk
-  AndroidStudio: Build -> Generate Signed App Bundle or APK -> APK -> choose android.jks -> release
-  rename and move *.apk file to _dist
+  AndroidStudio: Build -> Generate Signed App Bundle or APK -> APK -> choose android/keystore.jks -> release
+  rename and move *.apk file to dist/
  */
 void main() {
   final store = new Store<AppState>(AppReducer.reducer, initialState: AppState(), middleware: [thunkMiddleware]);
